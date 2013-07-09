@@ -28,6 +28,7 @@ var cheerio = require('cheerio');
 var HTMLFILE_DEFAULT = "index.html";
 var CHECKSFILE_DEFAULT = "checks.json";
 var outfile = "result.html";
+var jsonOut = "jsonOutput.txt";
 var assertFileExists = function(infile) {
     var instr = infile.toString();
     if(!fs.existsSync(instr)) {
@@ -74,10 +75,12 @@ if(require.main == module) {
 		 fs.writeFileSync(outfile, result);
                  var checkJson = checkHtmlFile(outfile, program.checks);  
 		 var outJson = JSON.stringify(checkJson, null, 4);
+                 fs.writeFileSync(jsonOut, outJson);
                  console.log(outJson);
 	});}else{
 	        var checkJson = checkHtmlFile(program.file, program.checks);
     		var outJson = JSON.stringify(checkJson, null, 4);
+		 fs.writeFileSync(jsonOut, outJson);
     		console.log(outJson);}
 } else {
     exports.checkHtmlFile = checkHtmlFile;
