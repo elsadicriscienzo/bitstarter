@@ -72,11 +72,10 @@ if(require.main == module) {
 	var url = program.url.toString(); 
 	rest.get(url).on('complete', function(result, response){  
 		console.log(result);
-	});}
-
-    var checkJson = checkHtmlFile(program.file, program.checks);
-    var outJson = JSON.stringify(checkJson, null, 4);
-    console.log(outJson);
+	});}else{
+	        var checkJson = checkHtmlFile(program.file, program.checks);
+    		var outJson = JSON.stringify(checkJson, null, 4);
+    		console.log(outJson);}
 } else {
     exports.checkHtmlFile = checkHtmlFile;
 }
